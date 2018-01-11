@@ -1,0 +1,25 @@
+mybatis:
+  config-location: classpath:mybatis-config.xml
+spring:
+  profiles:
+    active: dev
+---
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:mysql://192.168.0.30:3306/de_test?useSSL=false&characterEncoding=UTF-8
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+server:
+  port: 8087
+---
+spring:
+  profiles: prod
+  datasource:
+    url: jdbc:mysql://192.168.0.30:3306/de_example?useSSL=false&characterEncoding=UTF-8
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+server:
+  port: 8086
