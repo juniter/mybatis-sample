@@ -2,9 +2,15 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+    <settings>
+        <!--开启缓存-->
+        <setting name="cacheEnabled" value="true"/>
+    </settings>
+
     <typeAliases>
         <package name="jtr.mybatis.sample.domain"/>
     </typeAliases>
+
     <mappers>
         <mapper resource="jtr/mybatis/sample/mapper/UserMapper.xml"/>
     </mappers>

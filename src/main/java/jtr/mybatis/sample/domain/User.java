@@ -9,6 +9,11 @@ public class User {
         this.name = name;
         this.passport = passport;
     }
+    public User(String name,String passport,Integer uid){
+        this.name = name;
+        this.passport = passport;
+        this.uid = uid;
+    }
     /**
      * @return the name
      */

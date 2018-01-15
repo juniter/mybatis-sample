@@ -1,5 +1,7 @@
 package jtr.mybatis.sample.service;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,16 +33,17 @@ public class UserService{
   private List<User> autoGenerate(){
     List<User> users = new ArrayList<>();
 
-    for(int i =0;i<=10000;i++){
+    for(int i =0;i<=30000;i++){
       users.add(new User(this.generateName(),this.generateName()));
     }
     return users;
   }
 
   private String generateName(){
-    int randomNumber = Integer.parseInt(Double.toString(Math.random()*52+65));
-    StringBuffer sb = new StringBuffer((char)randomNumber);
-    sb.append(Math.random()*10000);
+    NumberFormat format = new DecimalFormat("####");
+    int randomNumber = Integer.parseInt(format.format(Math.random()*52+65));
+    StringBuffer sb = new StringBuffer("AutoName"+String.valueOf(randomNumber));
+    System.out.println(sb.toString());
     return sb.toString();
   }
 }

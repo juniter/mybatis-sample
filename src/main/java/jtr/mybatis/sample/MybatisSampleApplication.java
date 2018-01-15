@@ -22,6 +22,6 @@ public class MybatisSampleApplication implements CommandLineRunner{
     public void run(String... args) throws Exception {
         List<User> users = this.userService.listAllUsers();
         users.forEach(user -> System.out.println("User :"+user.toString()));
-        this.userService.generateUsers();
+        // this.userService.generateUsers();
     }
 }
