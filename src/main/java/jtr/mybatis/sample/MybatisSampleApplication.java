@@ -2,6 +2,7 @@ package jtr.mybatis.sample;
 
 import java.util.List;
 
+import jtr.mybatis.sample.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -13,6 +14,8 @@ import jtr.mybatis.sample.service.UserService;
 public class MybatisSampleApplication implements CommandLineRunner{
     @Autowired
     private UserService userService;
+    @Autowired
+    private TeacherService teacherService;
 
     public static void main(String[] args ) {
         SpringApplication.run(MybatisSampleApplication.class, args); 
@@ -20,8 +23,20 @@ public class MybatisSampleApplication implements CommandLineRunner{
 
     @Override
     public void run(String... args) throws Exception {
+        // this.testInit();
+        this.testJoin();
+    }
+
+    void testInit() throws Exception{
         List<User> users = this.userService.listAllUsers();
         users.forEach(user -> System.out.println("User :"+user.toString()));
-        // this.userService.generateUsers();
+
+        Thread.sleep(10000);
+        this.userService.insertUsers();
+        this.userService.selectUser();
+    }
+
+    void testJoin() throws Exception {
+        this.teacherService.selectStudentById();
     }
 }

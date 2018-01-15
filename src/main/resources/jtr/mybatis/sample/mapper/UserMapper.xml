@@ -6,11 +6,29 @@
     <cache eviction="LRU" flushInterval="60000" size="512" readOnly="true"/>
     <select id="selectAllUser" resultType="User">
     SELECT * FROM user;
-  </select>
-    <insert id="batchInsertUser" parameterType="User" useGeneratedKeys="true" keyProperty="uid">
+    </select>
+    <insert id="batchInsertUser" parameterType="User" useGeneratedKeys="true" keyColumn="uid">
         INSERT INTO user (`name`,passport) VALUES
         <foreach item="item" collection="list" separator=",">
             (#{item.name},#{item.passport})
         </foreach>
     </insert>
+    <select id="selectUser" resultType="User" parameterType="map">
+        SELECT * FROM user
+        <where>
+            <choose>
+                <when test="uid!=null">
+                    uid = #{uid}
+                </when>
+                <otherwise>
+                    <if test="u!=null and u.name!=null">
+                        AND `name` = #{u.name}
+                    </if>
+                    <if test="u!=null and u.passport!=null">
+                        AND `passport` = #{u.passport}
+                    </if>
+                </otherwise>
+            </choose>
+        </where>
+    </select>
 </mapper>

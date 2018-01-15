@@ -5,6 +5,7 @@ public class User {
     private String name;
     private String passport;
 
+    public User(){};
     public User(String name,String passport){
         this.name = name;
         this.passport = passport;
@@ -47,8 +48,9 @@ public class User {
     /**
      * @param uid the uid to set
      */
-    public void setUid(Integer uid) {
+    public User setUid(Integer uid) {
         this.uid = uid;
+        return this;
     }
 
     /**
